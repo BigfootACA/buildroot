@@ -1,0 +1,2 @@
+# SHA256 Password: oh-my-antc
+antc 1000 antc 1000 $5$2ckrKecrTPdI9t0$cboWzG4iKXFKxDbS6oC3kyoZg9SOibAjSmWGr9ojXlB /home/antc /bin/bash wheel Ant-C User

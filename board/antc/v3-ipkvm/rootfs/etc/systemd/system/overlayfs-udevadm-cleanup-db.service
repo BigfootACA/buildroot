@@ -1,0 +1,10 @@
+[Unit]
+Description=Cleanup udev Database
+DefaultDependencies=no
+Conflicts=systemd-udevd.service systemd-udevd-control.socket systemd-udevd-kernel.socket systemd-udev-trigger.service systemd-udev-settle.service
+After=overlayfs-ready.target systemd-udevd.service systemd-udevd-control.socket systemd-udevd-kernel.socket systemd-udev-trigger.service systemd-udev-settle.service
+Before=overlayfs.target
+ConditionPathIsReadWrite=!/
+[Service]
+Type=oneshot
+ExecStart=-udevadm info --cleanup-db

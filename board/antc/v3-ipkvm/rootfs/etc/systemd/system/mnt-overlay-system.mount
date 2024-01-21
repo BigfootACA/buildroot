@@ -1,0 +1,17 @@
+[Unit]
+Description=Mount OverlayFS System Partition
+DefaultDependencies=no
+IgnoreOnIsolate=yes
+Requires=overlayfs-early.target
+After=overlayfs-early.target system-slots.service blockdev@dev-root.target
+Before=overlayfs-ready.target
+AssertPathExists=/dev/root
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+RequiresMountsFor=/mnt
+ConditionPathIsReadWrite=!/
+[Mount]
+Type=squashfs
+What=/dev/root
+Where=/mnt/overlay/system
+Options=ro

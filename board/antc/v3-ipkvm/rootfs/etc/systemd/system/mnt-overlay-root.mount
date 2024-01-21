@@ -1,0 +1,16 @@
+[Unit]
+Description=Mount OverlayFS
+DefaultDependencies=no
+IgnoreOnIsolate=yes
+Requires=overlayfs-early.target overlayfs-userdata-init.service mnt-overlay-userdata.mount mnt-overlay-system.mount
+After=overlayfs-early.target overlayfs-userdata-init.service mnt-overlay-userdata.mount mnt-overlay-system.mount
+Before=overlayfs-ready.target overlayfs-root-init.service
+RequiresMountsFor=/mnt
+RequiresMountsFor=/mnt/overlay/userdata
+RequiresMountsFor=/mnt/overlay/system
+ConditionPathIsReadWrite=!/
+[Mount]
+Type=overlay
+What=rootfs
+Where=/mnt/overlay/root
+Options=rw,lowerdir=/mnt/overlay/system,upperdir=/mnt/overlay/userdata/upper,workdir=/mnt/overlay/userdata/work

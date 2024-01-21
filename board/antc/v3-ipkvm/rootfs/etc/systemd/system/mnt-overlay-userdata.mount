@@ -1,0 +1,16 @@
+[Unit]
+Description=Mount OverlayFS User Data Partition
+DefaultDependencies=no
+IgnoreOnIsolate=yes
+Requires=overlayfs-early.target systemd-repart.service systemd-fsck@dev-disk-by\x2dpartlabel-userdata.service
+After=overlayfs-early.target systemd-repart.service systemd-fsck@dev-disk-by\x2dpartlabel-userdata.service blockdev@dev-disk-by\x2dpartlabel-userdata.target
+Before=overlayfs-ready.target overlayfs-userdata-init.service
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+RequiresMountsFor=/mnt
+ConditionPathIsReadWrite=!/
+[Mount]
+Type=ext4
+What=/dev/disk/by-partlabel/userdata
+Where=/mnt/overlay/userdata
+Options=rw,noatime

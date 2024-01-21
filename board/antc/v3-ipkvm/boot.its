@@ -1,0 +1,46 @@
+/dts-v1/;
+
+/ {
+	description = "Linux ARM";
+
+	images {
+		kernel {
+			description = "Linux ARM kernel";
+			type = "kernel";
+			arch = "arm";
+			os = "linux";
+			compression = "none";
+			data = /incbin/("zImage");
+			load = <0x42000000>;
+			entry = <0x42000000>;
+
+			hash {
+				algo = "crc32";
+			};
+		};
+
+		fdt-sun8i-v3-antc-ipkvm {
+			description = "ARM device tree blob for sun8i-v3-antc-ipkvm";
+			type = "flat_dt";
+			arch = "arm";
+			os = "linux";
+			compression = "none";
+			data = /incbin/("sun8i-v3-antc-ipkvm.dtb");
+			load = <0x43000000>;
+
+			hash {
+				algo = "crc32";
+			};
+		};
+	};
+
+	configurations {
+		default = "config-sun8i-v3-antc-ipkvm";
+
+		config-sun8i-v3-antc-ipkvm {
+			description = "Linux ARM for sun8i-v3-antc-ipkvm";
+			kernel = "kernel";
+			fdt = "fdt-sun8i-v3-antc-ipkvm";
+		};
+	};
+};

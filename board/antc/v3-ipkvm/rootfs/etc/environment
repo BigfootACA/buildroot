@@ -1,0 +1,4 @@
+PATH=/usr/bin:/usr/sbin
+EDITOR=nano
+VISUAL=nano
+PAGER=less

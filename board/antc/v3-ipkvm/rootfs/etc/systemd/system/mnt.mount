@@ -1,0 +1,11 @@
+[Unit]
+Description=Mount /mnt for OverlayFS
+DefaultDependencies=no
+IgnoreOnIsolate=yes
+Requires=overlayfs-early.target
+ConditionPathIsReadWrite=!/
+[Mount]
+Type=tmpfs
+What=tmpfs
+Where=/mnt
+Options=rw,mode=0755

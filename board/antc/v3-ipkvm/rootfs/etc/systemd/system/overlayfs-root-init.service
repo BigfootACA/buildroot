@@ -1,0 +1,12 @@
+[Unit]
+Description=Initialize RootFS Contents
+DefaultDependencies=no
+Before=overlayfs-ready.target
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+RequiresMountsFor=/mnt/overlay/root
+ConditionPathIsReadWrite=!/
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=systemctl --root=/mnt/overlay/root set-default multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Upgrade Alternative Slot when System become stable
+DefaultDependencies=no
+RequiresMountsFor=/boot/misc
+Requires=boot-complete.target
+After=local-fs.target boot-complete.target
+Conflicts=shutdown.target
+Before=shutdown.target
+ConditionPathIsReadWrite=/
+[Timer]
+OnStartupSec=10min

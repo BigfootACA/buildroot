@@ -1,0 +1,7 @@
+[Unit]
+Description=OverlatFS Switch Root
+DefaultDependencies=no
+AllowIsolate=yes
+ConditionPathIsReadWrite=!/
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly

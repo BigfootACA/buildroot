@@ -1,0 +1,24 @@
+[Unit]
+Description=Setup A/B Slots
+DefaultDependencies=no
+Requires=systemd-udevd.service systemd-udev-trigger.service
+After=systemd-udevd.service systemd-udev-trigger.service
+RequiresMountsFor=/boot/misc
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=system-slots
+ExecStart=mkdir -p /run/lock
+ExecStart=systemctl set-environment SLOT_CURRENT=a
+ExecStart=-bash -c "systemctl set-environment SLOT_CURRENT=$(fw_getenv slot_current)"
+ExecStart=bash -c "[ -n \"${SLOT_CURRENT}\" ]"
+ExecStart=-bash -c "systemctl set-environment SLOT_ALTERNATIVE=$(case \"${SLOT_CURRENT}\" in a)echo b;;b)echo a;;esac)"
+ExecStart=ln -sf system_${SLOT_CURRENT} /dev/disk/by-partlabel/system
+ExecStart=ln -sf system_${SLOT_ALTERNATIVE} /dev/disk/by-partlabel/system_alt
+ExecStart=ln -sf system_${SLOT_CURRENT} /dev/block/by-name/system
+ExecStart=ln -sf system_${SLOT_ALTERNATIVE} /dev/block/by-name/system_alt
+ExecStart=ln -sf boot_${SLOT_CURRENT} /dev/disk/by-partlabel/boot
+ExecStart=ln -sf boot_${SLOT_ALTERNATIVE} /dev/disk/by-partlabel/boot_alt
+ExecStart=ln -sf boot_${SLOT_CURRENT} /dev/block/by-name/boot
+ExecStart=ln -sf boot_${SLOT_ALTERNATIVE} /dev/block/by-name/boot_alt
+ExecStart=ln -sf disk/by-partlabel/system /dev/root

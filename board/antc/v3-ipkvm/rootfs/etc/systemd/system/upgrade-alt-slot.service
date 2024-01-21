@@ -1,0 +1,24 @@
+[Unit]
+Description=Upgrade Alternative Slot
+DefaultDependencies=no
+RequiresMountsFor=/boot/misc
+Requires=boot-complete.target system-slots.service
+After=local-fs.target boot-complete.target system-slots.service
+Conflicts=shutdown.target
+Before=shutdown.target
+ConditionPathIsReadWrite=/
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=slots-upgrade
+ExecStartPost=-fw_setenv slot_${SLOT_ALTERNATIVE}_count 0
+TimeoutStartSec=infinity
+Restart=on-failure
+RestartSec=5min
+Nice=19
+CPUQuota=20%
+CPUWeight=10
+CPUSchedulingPolicy=idle
+IOWeight=10
+IOSchedulingClass=idle
+IOSchedulingPriority=7

@@ -1,0 +1,13 @@
+[Unit]
+Description=Update Slot Status
+DefaultDependencies=no
+RequiresMountsFor=/boot/misc
+Requires=boot-complete.target system-slots.service
+After=local-fs.target boot-complete.target system-slots.service
+Conflicts=shutdown.target
+Before=shutdown.target
+ConditionPathIsReadWrite=/
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=fw_setenv slot_${SLOT_CURRENT}_count 0

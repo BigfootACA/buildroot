@@ -1,0 +1,15 @@
+Port 22
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 3
+MaxSessions 10
+AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication yes
+PermitEmptyPasswords no
+UsePAM yes
+AllowAgentForwarding yes
+AllowTcpForwarding yes
+X11Forwarding no
+PermitTTY yes
+UseDNS no
+Subsystem sftp /usr/libexec/sftp-server

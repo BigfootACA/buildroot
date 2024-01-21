@@ -1,0 +1,8 @@
+[Unit]
+Description=OverlatFS Ready
+DefaultDependencies=no
+Before=overlayfs.target
+AllowIsolate=yes
+ConditionPathIsReadWrite=!/
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly

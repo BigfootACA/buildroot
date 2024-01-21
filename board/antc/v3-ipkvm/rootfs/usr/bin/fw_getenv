@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ -z "${1}" ]; then
+	echo "Usage: fw_getenv <ENV>" >&2
+	exit 1
+fi
+fw_printenv | awk -F= -vOFS== '$1 == "'"${1}"'" { $1 = ""; print substr($0,2) }'

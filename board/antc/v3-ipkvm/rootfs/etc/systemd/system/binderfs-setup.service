@@ -1,0 +1,10 @@
+[Unit]
+Description=Android BinderFS Setup
+DefaultDependencies=no
+RequiresMountsFor=/dev/binderfs
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=ln -sf binderfs/binder /dev/binder
+ExecStart=ln -sf binderfs/hwbinder /dev/hwbinder
+ExecStart=ln -sf binderfs/vndbinder /dev/vndbinder

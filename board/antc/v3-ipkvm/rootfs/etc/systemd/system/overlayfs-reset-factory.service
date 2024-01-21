@@ -1,0 +1,16 @@
+[Unit]
+Description=OverlayFS Format User Data Partition to Reset Factory
+DefaultDependencies=no
+After=systemd-repart.service
+Before=overlayfs-ready.target mnt-overlay-userdata.mount systemd-fsck@dev-disk-by\x2dpartlabel-userdata.service
+RequiresMountsFor=/boot/misc
+ConditionPathExists=/boot/misc/reset-factory
+ConditionPathExists=/dev/disk/by-partlabel/userdata
+ConditionPathIsReadWrite=/boot/misc
+ConditionPathIsReadWrite=!/
+ConditionPathIsMountPoint=!/mnt/overlay/userdata
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=mke2fs -F -t ext4 -L userdata /dev/disk/by-partlabel/userdata
+ExecStartPost=rm /boot/misc/reset-factory

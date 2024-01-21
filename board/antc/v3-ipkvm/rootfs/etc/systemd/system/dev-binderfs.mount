@@ -1,0 +1,7 @@
+[Unit]
+Description=Android BinderFS
+DefaultDependencies=no
+[Mount]
+Type=binder
+What=binder
+Where=/dev/binderfs

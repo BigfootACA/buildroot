@@ -1,0 +1,13 @@
+[Unit]
+Description=Initialize User Data Contents
+DefaultDependencies=no
+Before=overlayfs-ready.target mnt-overlay-root.mount
+RequiresMountsFor=/mnt/overlay/userdata
+OnFailure=emergency.target
+OnFailureJobMode=replace-irreversibly
+ConditionPathIsReadWrite=!/
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=mkdir -vp /mnt/overlay/userdata/upper
+ExecStart=mkdir -vp /mnt/overlay/userdata/work

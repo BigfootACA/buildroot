@@ -1,0 +1,21 @@
+[Unit]
+Description=SSH Key Generation
+ConditionPathExists=|!/etc/ssh/ssh_host_ecdsa_key
+ConditionPathExists=|!/etc/ssh/ssh_host_ecdsa_key.pub
+ConditionPathExists=|!/etc/ssh/ssh_host_ed25519_key
+ConditionPathExists=|!/etc/ssh/ssh_host_ed25519_key.pub
+ConditionPathExists=|!/etc/ssh/ssh_host_rsa_key
+ConditionPathExists=|!/etc/ssh/ssh_host_rsa_key.pub
+
+[Service]
+ExecStart=/usr/bin/ssh-keygen -A
+TimeoutStartSec=infinity
+Type=oneshot
+RemainAfterExit=yes
+Nice=19
+CPUQuota=20%
+CPUWeight=10
+CPUSchedulingPolicy=idle
+IOWeight=10
+IOSchedulingClass=idle
+IOSchedulingPriority=7

@@ -1,0 +1,7 @@
+NAME=AntOS
+VERSION=2024.01
+ID=antos
+ID_LIKE=buildroot
+VERSION_ID=2024.01
+PRETTY_NAME="AntOS 2024.01"
+HOME_URL=https://www.ant-c.com/

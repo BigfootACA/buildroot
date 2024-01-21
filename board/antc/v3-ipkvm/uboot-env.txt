@@ -1,0 +1,13 @@
+slot_current=a
+slot_a_count=0
+slot_b_count=0
+slot_recovery_count=0
+slot_a_bootargs=root=PARTLABEL=system_a
+slot_b_bootargs=root=PARTLABEL=system_b
+slot_boot_intf=mmc
+slot_boot_dev=0
+slot_boot_part=2
+slot_bootargs=console=ttyAMA0 rootwait init=/usr/lib/systemd/systemd
+slot_initialized=yes
+slot_method=part
+kernel_addr_r=0x48000000
