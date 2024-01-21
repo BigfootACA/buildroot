@@ -27,5 +27,4 @@ define V4L2LOOPBACK_LINUX_CONFIG_FIXUPS
 	$(call KCONFIG_ENABLE_OPT,CONFIG_VIDEO_DEV)
 endef
 
-$(eval $(kernel-module))
 $(eval $(generic-package))
