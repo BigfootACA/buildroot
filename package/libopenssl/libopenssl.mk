@@ -29,10 +29,6 @@ ifeq ($(BR2_USE_MMU),)
 LIBOPENSSL_CFLAGS += -DHAVE_FORK=0 -DOPENSSL_NO_MADVISE
 endif
 
-ifeq ($(BR2_PACKAGE_CRYPTODEV_LINUX),y)
-LIBOPENSSL_DEPENDENCIES += cryptodev-linux
-endif
-
 # fixes the following build failures:
 #
 # - musl
@@ -75,7 +71,7 @@ define LIBOPENSSL_CONFIGURE_CMDS
 			--openssldir=/etc/ssl \
 			$(if $(BR2_TOOLCHAIN_HAS_THREADS),threads,no-threads) \
 			$(if $(BR2_STATIC_LIBS),no-shared,shared) \
-			$(if $(BR2_PACKAGE_CRYPTODEV_LINUX),enable-devcryptoeng) \
+			enable-devcryptoeng \
 			no-rc5 \
 			enable-camellia \
 			no-tests \

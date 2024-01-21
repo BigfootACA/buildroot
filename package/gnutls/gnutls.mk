@@ -79,10 +79,7 @@ else
 GNUTLS_CONF_OPTS += --without-libbrotli
 endif
 
-ifeq ($(BR2_PACKAGE_CRYPTODEV_LINUX),y)
 GNUTLS_CONF_OPTS += --enable-cryptodev
-GNUTLS_DEPENDENCIES += cryptodev-linux
-endif
 
 ifeq ($(BR2_PACKAGE_LIBIDN2),y)
 GNUTLS_CONF_OPTS += --with-idn
