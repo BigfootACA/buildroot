@@ -1,0 +1,7 @@
+config BR2_PACKAGE_LIBDATACHANNEL
+	bool "libdatachannel"
+	help
+	  C/C++ WebRTC network library featuring Data Channels,
+	  Media Transport, and WebSockets.
+
+	  https://github.com/paullouisageneau/libdatachannel
