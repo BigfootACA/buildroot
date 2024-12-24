@@ -1,0 +1,6 @@
+config BR2_PACKAGE_WEBRTC_KVM
+	bool "WebRTC KVM"
+	help
+	  Keyboard, Video, Mouse via WebRTC
+
+	  https://github.com/BigfootACA/webrtc-kvm
